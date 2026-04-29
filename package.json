@@ -1,0 +1,22 @@
+{
+  "name": "uzzala-bio-energy",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "gsap": "^3.12.7",
+    "lenis": "^1.1.18",
+    "three": "^0.160.0",
+    "swiper": "^11.1.15",
+    "photoswipe": "^5.4.4",
+    "just-validate": "^4.3.0"
+  },
+  "devDependencies": {
+    "vite": "^6.3.0"
+  }
+}

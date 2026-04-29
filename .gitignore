@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+*.log
+
+# Env files
+.env
+.env.local
+.env.*.local
+
+# Claude Code system (not part of the project)
+.claude/
+.agents/
+skills.md
+skills-lock.json
+
+# Working notes / scratch files (not part of the deployable site)
+image.png
+asset-prompts.md
+implementation_plan.md
+research/

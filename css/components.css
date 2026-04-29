@@ -1,0 +1,867 @@
+/* ==========================================================================
+   SHARED COMPONENTS — Navbar, Footer, Buttons, Cards, Cursor, Preloader
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. BUTTONS
+   -------------------------------------------------------------------------- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    font-family: var(--font-display);
+    font-size: var(--fs-small);
+    font-weight: var(--fw-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.875rem 2rem;
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: color var(--duration-base) var(--ease-out-expo),
+                background-color var(--duration-base) var(--ease-out-expo),
+                border-color var(--duration-base) var(--ease-out-expo),
+                box-shadow var(--duration-base) var(--ease-out-expo),
+                transform var(--duration-base) var(--ease-out-expo);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: -1;
+    transition: transform var(--duration-slow) var(--ease-out-expo);
+    transform: scaleX(0);
+    transform-origin: left;
+}
+
+.btn:hover::before {
+    transform: scaleX(1);
+}
+
+/* Primary (green fill) */
+.btn--primary {
+    background: var(--accent-green);
+    color: var(--bg-primary);
+}
+
+.btn--primary::before {
+    background: #2de00f;
+}
+
+.btn--primary:hover {
+    color: var(--bg-primary);
+    box-shadow: var(--shadow-glow-lg);
+}
+
+/* Secondary (outline) */
+.btn--secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--glass-border);
+}
+
+.btn--secondary::before {
+    background: var(--glass-bg-hover);
+}
+
+.btn--secondary:hover {
+    border-color: var(--accent-green);
+    color: var(--accent-green);
+}
+
+/* Ghost (text only) */
+.btn--ghost {
+    background: transparent;
+    color: var(--accent-green);
+    padding: 0.5rem 0;
+    text-transform: none;
+    letter-spacing: normal;
+    font-size: var(--fs-body);
+}
+
+.btn--ghost::after {
+    content: '→';
+    transition: transform var(--duration-fast) var(--ease-out-expo);
+}
+
+.btn--ghost:hover::after {
+    transform: translateX(4px);
+}
+
+/* --------------------------------------------------------------------------
+   2. NAVBAR
+   -------------------------------------------------------------------------- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-sticky);
+    padding: var(--space-sm) 0;
+    transition: background-color var(--duration-base) var(--ease-in-out),
+                backdrop-filter var(--duration-base) var(--ease-in-out),
+                padding var(--duration-base) var(--ease-in-out),
+                box-shadow var(--duration-base) var(--ease-in-out);
+}
+
+.navbar.scrolled {
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    padding: var(--space-xs) 0;
+}
+
+.navbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--container-pad);
+}
+
+/* Logo */
+.navbar__logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: var(--fw-bold);
+    color: var(--text-primary);
+    z-index: 10;
+}
+
+.navbar__logo img {
+    height: 40px;
+    width: auto;
+}
+
+.navbar__logo-accent {
+    color: var(--accent-green);
+}
+
+/* Nav links */
+.navbar__menu {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    list-style: none;
+}
+
+.navbar__link {
+    font-family: var(--font-body);
+    font-size: var(--fs-small);
+    font-weight: var(--fw-medium);
+    color: var(--text-secondary);
+    position: relative;
+    padding: var(--space-xs) 0;
+    transition: color var(--duration-fast);
+}
+
+.navbar__link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--accent-green);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--duration-base) var(--ease-out-expo);
+}
+
+.navbar__link:hover,
+.navbar__link.active {
+    color: var(--text-primary);
+}
+
+.navbar__link:hover::after,
+.navbar__link.active::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Dropdown */
+.navbar__dropdown {
+    position: relative;
+}
+
+.navbar__dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.navbar__dropdown-toggle svg {
+    width: 12px;
+    height: 12px;
+    transition: transform var(--duration-fast);
+    fill: currentColor;
+}
+
+.navbar__dropdown:hover .navbar__dropdown-toggle svg {
+    transform: rotate(180deg);
+}
+
+.navbar__dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    min-width: 280px;
+    background: rgba(17, 17, 24, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-xs) 0;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--duration-base) var(--ease-out-expo),
+                visibility var(--duration-base) var(--ease-out-expo),
+                transform var(--duration-base) var(--ease-out-expo);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.navbar__dropdown:hover .navbar__dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+.navbar__dropdown-menu a {
+    display: block;
+    padding: 0.625rem 1.25rem;
+    font-size: var(--fs-small);
+    color: var(--text-secondary);
+    transition: color var(--duration-fast),
+                background-color var(--duration-fast),
+                transform var(--duration-fast);
+}
+
+.navbar__dropdown-menu a:hover {
+    color: var(--accent-green);
+    background: rgba(57, 255, 20, 0.05);
+    transform: translateX(0.5rem);
+}
+
+/* CTA button in nav */
+.navbar__cta {
+    composes: btn--primary from './components.css';
+    padding: 0.625rem 1.5rem;
+    font-size: var(--fs-caption);
+}
+
+/* Hamburger (mobile) */
+.navbar__hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    z-index: 10;
+    background: none;
+    border: none;
+}
+
+.navbar__hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: transform var(--duration-base) var(--ease-out-expo),
+                opacity var(--duration-base) var(--ease-out-expo),
+                background-color var(--duration-base) var(--ease-out-expo);
+    transform-origin: center;
+}
+
+.navbar__hamburger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.navbar__hamburger.active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.navbar__hamburger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile menu */
+.navbar__mobile-menu {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-primary);
+    z-index: var(--z-overlay);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-lg);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--duration-slow) var(--ease-out-expo),
+                visibility var(--duration-slow) var(--ease-out-expo),
+                transform var(--duration-slow) var(--ease-out-expo);
+}
+
+.navbar__mobile-menu.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.navbar__mobile-menu a {
+    font-family: var(--font-display);
+    font-size: var(--fs-h3);
+    font-weight: var(--fw-bold);
+    color: var(--text-secondary);
+    transition: color var(--duration-fast);
+}
+
+.navbar__mobile-menu a:hover {
+    color: var(--accent-green);
+}
+
+/* Navbar responsive */
+@media (max-width: 1023px) {
+    .navbar__menu {
+        display: none;
+    }
+
+    .navbar__cta-desktop {
+        display: none;
+    }
+
+    .navbar__hamburger {
+        display: flex;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   3. FOOTER
+   -------------------------------------------------------------------------- */
+.footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--glass-border);
+    padding-top: var(--space-3xl);
+    padding-bottom: var(--space-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer__grid {
+    display: grid;
+    grid-template-columns: 1.5fr repeat(3, 1fr);
+    gap: var(--space-xl);
+    margin-bottom: var(--space-3xl);
+}
+
+.footer__brand p {
+    margin-top: var(--space-sm);
+    font-size: var(--fs-small);
+    max-width: 35ch;
+}
+
+.footer__heading {
+    font-family: var(--font-display);
+    font-size: var(--fs-body);
+    font-weight: var(--fw-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.footer__links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.footer__links a {
+    font-size: var(--fs-small);
+    color: var(--text-secondary);
+    transition: color var(--duration-fast),
+                transform var(--duration-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.footer__links a:hover {
+    color: var(--accent-green);
+    transform: translateX(4px);
+}
+
+.footer__contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-sm);
+    font-size: var(--fs-small);
+    color: var(--text-secondary);
+}
+
+.footer__contact-item svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--accent-green);
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.footer__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--glass-border);
+    font-size: var(--fs-caption);
+    color: var(--text-tertiary);
+}
+
+.footer__socials {
+    display: flex;
+    gap: var(--space-sm);
+    list-style: none;
+}
+
+.footer__socials a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    transition: color var(--duration-base) var(--ease-out-expo),
+                border-color var(--duration-base) var(--ease-out-expo),
+                transform var(--duration-base) var(--ease-out-expo),
+                box-shadow var(--duration-base) var(--ease-out-expo);
+}
+
+.footer__socials a:hover {
+    border-color: var(--accent-green);
+    color: var(--accent-green);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-glow);
+}
+
+@media (max-width: 767px) {
+    .footer__grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+
+    .footer__bottom {
+        flex-direction: column;
+        gap: var(--space-sm);
+        text-align: center;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   4. GLASS CARD
+   -------------------------------------------------------------------------- */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    transition: background-color var(--duration-base) var(--ease-in-out),
+                border-color var(--duration-base) var(--ease-in-out),
+                transform var(--duration-base) var(--ease-in-out),
+                box-shadow var(--duration-base) var(--ease-in-out);
+}
+
+.glass-card:hover {
+    background: var(--glass-bg-hover);
+    border-color: var(--glass-border-hover);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(57, 255, 20, 0.08);
+}
+
+.glass-card__icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(57, 255, 20, 0.08);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-md);
+    color: var(--accent-green);
+}
+
+.glass-card__icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.glass-card__title {
+    font-family: var(--font-display);
+    font-size: var(--fs-h4);
+    font-weight: var(--fw-semibold);
+    margin-bottom: var(--space-xs);
+}
+
+.glass-card__text {
+    font-size: var(--fs-small);
+    color: var(--text-secondary);
+    line-height: var(--lh-relaxed);
+}
+
+.glass-card__image {
+    width: 100%;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-md);
+}
+
+/* --------------------------------------------------------------------------
+   5. HERO BANNER (Shared across inner pages)
+   -------------------------------------------------------------------------- */
+.page-hero {
+    position: relative;
+    min-height: 50vh;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: var(--space-3xl);
+    overflow: hidden;
+}
+
+.page-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+}
+
+.page-hero__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.page-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            var(--bg-primary) 0%,
+            rgba(10, 10, 15, 0.7) 50%,
+            rgba(10, 10, 15, 0.4) 100%);
+    z-index: -1;
+}
+
+.page-hero__content {
+    position: relative;
+    z-index: 1;
+}
+
+.page-hero__breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: var(--fs-caption);
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-sm);
+}
+
+.page-hero__breadcrumb a {
+    color: var(--text-tertiary);
+}
+
+.page-hero__breadcrumb a:hover {
+    color: var(--accent-green);
+}
+
+.page-hero__breadcrumb span {
+    color: var(--text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   6. CUSTOM CURSOR
+   -------------------------------------------------------------------------- */
+.cursor-dot {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: var(--accent-green);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: var(--z-cursor);
+    mix-blend-mode: difference;
+    transform: translate(-50%, -50%);
+}
+
+.cursor-ring {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(57, 255, 20, 0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: var(--z-cursor);
+    transform: translate(-50%, -50%);
+    transition: width var(--duration-fast), height var(--duration-fast),
+        border-color var(--duration-fast);
+}
+
+.cursor-ring.hover {
+    width: 60px;
+    height: 60px;
+    border-color: var(--accent-green);
+    background: rgba(57, 255, 20, 0.05);
+}
+
+/* Hide on touch */
+@media (pointer: coarse) {
+
+    .cursor-dot,
+    .cursor-ring {
+        display: none !important;
+    }
+
+    body {
+        cursor: auto;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   7. PRELOADER
+   -------------------------------------------------------------------------- */
+.preloader {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-preloader);
+    background: var(--bg-primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+}
+
+.preloader__logo {
+    font-family: var(--font-display);
+    font-size: var(--fs-h3);
+    font-weight: var(--fw-bold);
+    color: var(--text-primary);
+}
+
+.preloader__logo span {
+    color: var(--accent-green);
+}
+
+.preloader__counter {
+    font-family: var(--font-display);
+    font-size: var(--fs-hero);
+    font-weight: var(--fw-bold);
+    color: var(--text-primary);
+    opacity: 0.15;
+}
+
+.preloader__bar {
+    width: 200px;
+    height: 2px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.preloader__bar-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent-green);
+    border-radius: var(--radius-full);
+}
+
+/* --------------------------------------------------------------------------
+   8. WHATSAPP WIDGET
+   -------------------------------------------------------------------------- */
+.whatsapp-widget {
+    position: fixed;
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    z-index: var(--z-dropdown);
+}
+
+.whatsapp-widget__btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25d366;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+    transition: transform var(--duration-base) var(--ease-out-expo),
+                box-shadow var(--duration-base) var(--ease-out-expo);
+    border: none;
+}
+
+.whatsapp-widget__btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-widget__btn svg {
+    width: 28px;
+    height: 28px;
+    fill: white;
+}
+
+.whatsapp-widget__popup {
+    position: absolute;
+    bottom: calc(100% + var(--space-sm));
+    right: 0;
+    width: 300px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity var(--duration-base) var(--ease-out-expo),
+                visibility var(--duration-base) var(--ease-out-expo),
+                transform var(--duration-base) var(--ease-out-expo);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.whatsapp-widget__popup.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.whatsapp-widget__popup-title {
+    font-family: var(--font-display);
+    font-size: var(--fs-body);
+    font-weight: var(--fw-semibold);
+    margin-bottom: var(--space-xs);
+}
+
+.whatsapp-widget__popup-subtitle {
+    font-size: var(--fs-caption);
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-md);
+}
+
+.whatsapp-widget__contact {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    transition: background var(--duration-fast);
+    margin-bottom: var(--space-xs);
+}
+
+.whatsapp-widget__contact:hover {
+    background: rgba(37, 211, 102, 0.08);
+}
+
+.whatsapp-widget__contact-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--fs-small);
+    font-weight: var(--fw-bold);
+    color: var(--accent-green);
+    flex-shrink: 0;
+}
+
+.whatsapp-widget__contact-name {
+    font-size: var(--fs-small);
+    font-weight: var(--fw-medium);
+}
+
+.whatsapp-widget__contact-role {
+    font-size: var(--fs-caption);
+    color: var(--text-tertiary);
+}
+
+/* --------------------------------------------------------------------------
+   9. MARQUEE STRIP
+   -------------------------------------------------------------------------- */
+.marquee {
+    overflow: hidden;
+    padding: var(--space-md) 0;
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.marquee__track {
+    display: flex;
+    gap: var(--space-xl);
+    width: max-content;
+    will-change: transform;
+}
+
+.marquee__item {
+    font-family: var(--font-display);
+    font-size: var(--fs-h2);
+    font-weight: var(--fw-bold);
+    color: var(--text-tertiary);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+    -webkit-text-stroke: 1px var(--text-tertiary);
+    -webkit-text-fill-color: transparent;
+}
+
+.marquee__item .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-green);
+    flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   10. SECTION DIVIDER
+   -------------------------------------------------------------------------- */
+.section-divider {
+    --divider-glow: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right,
+            transparent,
+            var(--glass-border) 20%,
+            var(--accent-green) 50%,
+            var(--glass-border) 80%,
+            transparent);
+    opacity: calc(0.5 + var(--divider-glow) * 0.45);
+    box-shadow: 0 0 calc(var(--divider-glow) * 12px) calc(var(--divider-glow) * 2px) rgba(57, 255, 20, calc(var(--divider-glow) * 0.55));
+    transform-origin: center;
+}

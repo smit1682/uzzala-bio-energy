@@ -1,0 +1,440 @@
+/* ==========================================================================
+   UZZALA BIO ENERGY — Design System
+   Global tokens, reset, typography, utilities.
+   This is the single source of truth for all design decisions.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   0. FONTS
+   -------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* --------------------------------------------------------------------------
+   1. DESIGN TOKENS (Custom Properties)
+   -------------------------------------------------------------------------- */
+:root {
+  /* — Colors ------------------------------------------------------------ */
+  --bg-primary:    #0a0a0f;
+  --bg-secondary:  #111118;
+  --bg-tertiary:   #1a1a24;
+  --bg-card:       #14141e;
+
+  --accent-green:  #39ff14;
+  --accent-teal:   #00f0ff;
+  --accent-amber:  #ffb800;
+
+  --text-primary:   #ffffff;
+  --text-secondary: #a0a0b0;
+  --text-tertiary:  #6a6a7a;
+  --text-accent:    var(--accent-green);
+
+  /* — Glass -------------------------------------------------------------- */
+  --glass-bg:      rgba(255, 255, 255, 0.03);
+  --glass-bg-hover:rgba(255, 255, 255, 0.06);
+  --glass-border:  rgba(255, 255, 255, 0.08);
+  --glass-border-hover: rgba(57, 255, 20, 0.2);
+
+  /* — Typography --------------------------------------------------------- */
+  --font-display:  'Space Grotesk', sans-serif;
+  --font-body:     'Inter', sans-serif;
+
+  --fs-hero:    clamp(3rem, 8vw, 7rem);
+  --fs-h1:      clamp(2.5rem, 5vw, 4.5rem);
+  --fs-h2:      clamp(2rem, 4vw, 3.5rem);
+  --fs-h3:      clamp(1.5rem, 3vw, 2rem);
+  --fs-h4:      clamp(1.125rem, 1.5vw, 1.5rem);
+  --fs-body:    clamp(0.9375rem, 1vw, 1.0625rem);
+  --fs-small:   clamp(0.8125rem, 0.9vw, 0.875rem);
+  --fs-caption:  0.75rem;
+
+  --lh-tight:   1.1;
+  --lh-snug:    1.3;
+  --lh-normal:  1.6;
+  --lh-relaxed: 1.8;
+
+  --fw-light:    300;
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  /* — Spacing (8px base grid) ------------------------------------------- */
+  --space-xs:    0.5rem;   /* 8px */
+  --space-sm:    1rem;     /* 16px */
+  --space-md:    1.5rem;   /* 24px */
+  --space-lg:    2rem;     /* 32px */
+  --space-xl:    3rem;     /* 48px */
+  --space-2xl:   4rem;     /* 64px */
+  --space-3xl:   6rem;     /* 96px */
+  --space-4xl:   8rem;     /* 128px */
+  --space-section: clamp(5rem, 10vh, 10rem);
+
+  /* — Layout ------------------------------------------------------------- */
+  --container-max:  1400px;
+  --container-pad:  clamp(1rem, 4vw, 3rem);
+  --grid-gap:       clamp(1rem, 2vw, 2rem);
+
+  /* — Borders & Radius --------------------------------------------------- */
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-full: 9999px;
+
+  /* — Shadows ------------------------------------------------------------- */
+  --shadow-card:   0 4px 30px rgba(0, 0, 0, 0.3);
+  --shadow-glow:   0 0 40px rgba(57, 255, 20, 0.1);
+  --shadow-glow-lg:0 0 80px rgba(57, 255, 20, 0.15);
+
+  /* — Transitions -------------------------------------------------------- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast:  0.2s;
+  --duration-base:  0.4s;
+  --duration-slow:  0.8s;
+
+  /* — Z-index scale ------------------------------------------------------ */
+  --z-base:       1;
+  --z-dropdown:   100;
+  --z-sticky:     200;
+  --z-overlay:    300;
+  --z-modal:      400;
+  --z-cursor:     500;
+  --z-preloader:  999;
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET & BASE
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-normal);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+}
+
+/* Skip link for a11y */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-sm);
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--accent-green);
+  color: var(--bg-primary);
+  font-weight: var(--fw-bold);
+  z-index: var(--z-preloader);
+  border-radius: var(--radius-sm);
+  transition: top var(--duration-fast);
+}
+
+.skip-link:focus {
+  top: var(--space-sm);
+}
+
+/* Keyboard-only focus ring — visible for tab navigation, hidden on mouse click. */
+:focus-visible {
+  outline: 2px solid var(--accent-green);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   3. TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+h4 { font-size: var(--fs-h4); }
+
+.hero-title {
+  font-size: var(--fs-hero);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.03em;
+  line-height: var(--lh-tight);
+}
+
+p {
+  color: var(--text-secondary);
+  line-height: var(--lh-normal);
+  max-width: 65ch;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-in-out);
+}
+
+a:hover {
+  color: var(--accent-green);
+}
+
+strong {
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+}
+
+.section-label {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent-green);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-md);
+}
+
+.section-label::before {
+  content: '';
+  width: 2rem;
+  height: 1px;
+  background: var(--accent-green);
+}
+
+/* --------------------------------------------------------------------------
+   4. IMAGES & MEDIA
+   -------------------------------------------------------------------------- */
+img, video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+img {
+  font-style: italic;         /* alt text styling when img fails */
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* --------------------------------------------------------------------------
+   5. LAYOUT UTILITIES
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.container--wide {
+  max-width: 1600px;
+}
+
+.container--narrow {
+  max-width: 900px;
+}
+
+.section {
+  padding-block: var(--space-section);
+  position: relative;
+}
+
+.grid {
+  display: grid;
+  gap: var(--grid-gap);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* --------------------------------------------------------------------------
+   6. ANIMATION UTILITIES
+   -------------------------------------------------------------------------- */
+
+/* Initial hidden state for GSAP reveals — prevents FOUC */
+.reveal-text,
+.reveal-up,
+.reveal-fade,
+.reveal-scale,
+.reveal-left,
+.reveal-right,
+.reveal-scramble {
+  visibility: hidden;
+}
+
+/* Blur reveal starts pre-blurred so there's no crisp flash before the tween. */
+.reveal-blur {
+  filter: blur(16px);
+  opacity: 0;
+  will-change: filter, transform, opacity;
+}
+
+/* Noise overlay for cinematic texture */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  mix-blend-mode: overlay;
+}
+
+/* --------------------------------------------------------------------------
+   7. SCROLL PROGRESS BAR (native CSS)
+   -------------------------------------------------------------------------- */
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent-green);
+    transform-origin: left;
+    z-index: var(--z-sticky);
+    animation: scroll-grow linear;
+    animation-timeline: scroll();
+  }
+
+  @keyframes scroll-grow {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8. SELECTION & SCROLLBAR
+   -------------------------------------------------------------------------- */
+::selection {
+  background: rgba(57, 255, 20, 0.25);
+  color: var(--text-primary);
+}
+
+/* Custom scrollbar (Chromium) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Firefox scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--bg-tertiary) var(--bg-primary);
+}
+
+/* --------------------------------------------------------------------------
+   9. REDUCED MOTION
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-text,
+  .reveal-up,
+  .reveal-fade,
+  .reveal-scale,
+  .reveal-left,
+  .reveal-right {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9b. TOUCH HOVER RESET
+   On touch devices, :hover styles can stick after tap (sticky hover). Neutralise
+   the transform-based lift/translate effects so tapped elements settle back.
+   -------------------------------------------------------------------------- */
+@media (hover: none) {
+  .btn:hover::before { transform: scaleX(0); }
+  .glass-card:hover,
+  .footer__links a:hover,
+  .footer__socials a:hover,
+  .whatsapp-widget__btn:hover,
+  .navbar__dropdown-menu a:hover {
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10. RESPONSIVE BREAKPOINTS (reference)
+   --------------------------------------------------------------------------
+   Mobile:  375px  (default / min)
+   Tablet:  768px  @media (min-width: 768px)
+   Desktop: 1024px @media (min-width: 1024px)
+   Wide:    1440px @media (min-width: 1440px)
+   UltraW:  1920px @media (min-width: 1920px)
+   -------------------------------------------------------------------------- */
