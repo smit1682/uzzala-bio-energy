@@ -4,6 +4,7 @@ import { resolve } from 'path';
 export default defineConfig({
     root: '.',
     publicDir: 'assets',
+    appType: 'mpa',
     build: {
         outDir: 'dist',
         rollupOptions: {

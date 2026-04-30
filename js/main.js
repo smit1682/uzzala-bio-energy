@@ -61,11 +61,24 @@ function initPreloader() {
         return;
     }
 
+    // Skip the full 2.7s preloader on intra-site navigations within the same
+    // tab. The first page visit shows the brand intro; every navigation after
+    // that hands the transition off to View Transitions (~350ms crossfade) so
+    // page hops feel fast. sessionStorage scopes the flag to the tab, so a
+    // fresh tab still gets the full preloader.
+    const isReturningVisitor = sessionStorage.getItem('uzzala-visited') === '1';
+    if (isReturningVisitor) {
+        preloader.remove();
+        ScrollTrigger.refresh();
+        return;
+    }
+
     const tl = gsap.timeline({
         onComplete: () => {
             preloader.remove();
             // Refresh so ScrollTrigger recalculates positions now layout is final
             ScrollTrigger.refresh();
+            sessionStorage.setItem('uzzala-visited', '1');
         },
     });
 
@@ -90,38 +103,14 @@ function initPreloader() {
 }
 
 /* --------------------------------------------------------------------------
-   4. CUSTOM CURSOR
+   4. MAGNETIC BUTTON PULL
+   Native cursor everywhere; .magnetic elements (CTAs) gently lean into the
+   pointer for a tactile micro-interaction. Pull is clamped so wide buttons
+   don't drift 30px+ at the corners.
    -------------------------------------------------------------------------- */
-function initCursor() {
-    // Skip on touch devices
+function initMagnetic() {
     if (window.matchMedia('(pointer: coarse)').matches || prefersReducedMotion) return;
 
-    const dot = document.querySelector('.cursor-dot');
-    const ring = document.querySelector('.cursor-ring');
-    if (!dot || !ring) return;
-
-    const xDot = gsap.quickTo(dot, 'left', { duration: 0.15, ease: 'power3' });
-    const yDot = gsap.quickTo(dot, 'top', { duration: 0.15, ease: 'power3' });
-    const xRing = gsap.quickTo(ring, 'left', { duration: 0.4, ease: 'power3' });
-    const yRing = gsap.quickTo(ring, 'top', { duration: 0.4, ease: 'power3' });
-
-    window.addEventListener('mousemove', (e) => {
-        xDot(e.clientX);
-        yDot(e.clientY);
-        xRing(e.clientX);
-        yRing(e.clientY);
-    });
-
-    // Scale ring on interactive elements
-    const interactives = document.querySelectorAll('a, button, .magnetic, input, textarea, select');
-    interactives.forEach((el) => {
-        el.addEventListener('mouseenter', () => ring.classList.add('hover'));
-        el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
-    });
-
-    // Magnetic effect on .magnetic elements. Pull is clamped to MAX_PULL px on
-    // each axis — wide CTAs would otherwise drift 30px+ at the corners, which
-    // reads as agency-tier rather than B2B-credible.
     const MAX_PULL = 10;
     const clampPull = gsap.utils.clamp(-MAX_PULL, MAX_PULL);
     document.querySelectorAll('.magnetic').forEach((el) => {
@@ -187,7 +176,7 @@ function initWhatsApp() {
 document.addEventListener('DOMContentLoaded', () => {
     initPreloader();
     initNavbar(lenis);
-    initCursor();
+    initMagnetic();
     initMarquees();
     initWhatsApp();
     initAnimations(prefersReducedMotion);

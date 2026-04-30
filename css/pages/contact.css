@@ -1,0 +1,180 @@
+/* ==========================================================================
+   CONTACT.CSS — Contact page styles
+   ========================================================================== */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-3xl);
+    align-items: start;
+}
+
+/* ---------- Info Cards ---------- */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.contact-info-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    transition: border-color var(--duration-base) var(--ease-out-expo),
+        transform var(--duration-base) var(--ease-out-expo);
+}
+
+.contact-info-card:hover {
+    border-color: rgba(57, 255, 20, 0.25);
+    transform: translateY(-3px);
+}
+
+.contact-info-card__icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(57, 255, 20, 0.08);
+    border: 1px solid rgba(57, 255, 20, 0.18);
+    border-radius: var(--radius-md);
+    color: var(--accent-green);
+    flex-shrink: 0;
+}
+
+.contact-info-card__icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.contact-info-card h4 {
+    font-family: var(--font-display);
+    font-size: var(--fs-body);
+    font-weight: var(--fw-semibold);
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.contact-info-card p,
+.contact-info-card a {
+    color: var(--text-secondary);
+    font-size: var(--fs-small);
+    line-height: var(--lh-relaxed);
+}
+
+.contact-info-card a:hover {
+    color: var(--accent-green);
+}
+
+/* ---------- Form ---------- */
+.contact-form-wrap {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+}
+
+.contact-form-wrap h3 {
+    font-family: var(--font-display);
+    font-size: var(--fs-h3);
+    font-weight: var(--fw-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-xl);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group--full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-size: var(--fs-small);
+    font-weight: var(--fw-medium);
+    color: var(--text-secondary);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 0.875rem 1rem;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    transition: border-color var(--duration-fast) var(--ease-out-expo);
+    outline: none;
+    width: 100%;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: var(--accent-green);
+}
+
+.form-group textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.form-group select {
+    appearance: none;
+    cursor: pointer;
+}
+
+.form-group select option {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.contact-form-wrap .btn {
+    margin-top: var(--space-md);
+    width: 100%;
+}
+
+/* ---------- Map ---------- */
+.contact-map {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    aspect-ratio: 21/9;
+}
+
+.contact-map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    filter: grayscale(0.8) invert(0.92) contrast(0.85);
+}
+
+@media (max-width: 1023px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 639px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}

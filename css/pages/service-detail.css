@@ -1,0 +1,291 @@
+/* ==========================================================================
+   SERVICE-DETAIL.CSS — Shared styles for all service detail pages
+   ========================================================================== */
+
+/* Overview: Image + Text split */
+.service-overview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
+}
+
+.service-overview__media {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.service-overview__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.service-overview__content h2 {
+    font-family: var(--font-display);
+    font-size: var(--fs-h2);
+    font-weight: var(--fw-bold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+}
+
+.service-overview__content p {
+    color: var(--text-secondary);
+    line-height: var(--lh-relaxed);
+    margin-bottom: var(--space-md);
+}
+
+.service-overview__content p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 1023px) {
+    .service-overview {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+}
+
+/* Features grid */
+.service-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+}
+
+.service-feature {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    transition: border-color var(--duration-base) var(--ease-out-expo),
+        transform var(--duration-base) var(--ease-out-expo);
+}
+
+.service-feature:hover {
+    border-color: rgba(57, 255, 20, 0.25);
+    transform: translateY(-4px);
+}
+
+.service-feature__icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(57, 255, 20, 0.08);
+    border: 1px solid rgba(57, 255, 20, 0.18);
+    border-radius: var(--radius-md);
+    color: var(--accent-green);
+    margin-bottom: var(--space-md);
+}
+
+.service-feature__icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.service-feature h4 {
+    font-family: var(--font-display);
+    font-size: var(--fs-h4);
+    font-weight: var(--fw-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-xs);
+}
+
+.service-feature p {
+    color: var(--text-secondary);
+    font-size: var(--fs-small);
+    line-height: var(--lh-relaxed);
+}
+
+@media (max-width: 1023px) {
+    .service-features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 639px) {
+    .service-features {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Specs table */
+.service-specs {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.service-specs table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.service-specs th,
+.service-specs td {
+    padding: var(--space-md) var(--space-lg);
+    text-align: left;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.service-specs th {
+    font-family: var(--font-display);
+    font-weight: var(--fw-semibold);
+    color: var(--text-primary);
+    background: rgba(57, 255, 20, 0.04);
+    font-size: var(--fs-small);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.service-specs td {
+    color: var(--text-secondary);
+    font-size: var(--fs-body);
+}
+
+.service-specs tr:last-child td {
+    border-bottom: none;
+}
+
+.service-specs td:first-child {
+    font-weight: var(--fw-medium);
+    color: var(--text-primary);
+}
+
+/* Related services */
+.related-services {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+}
+
+.related-service-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color var(--duration-base) var(--ease-out-expo),
+        transform var(--duration-base) var(--ease-out-expo);
+}
+
+.related-service-card:hover {
+    border-color: rgba(57, 255, 20, 0.35);
+    transform: translateY(-4px);
+}
+
+.related-service-card img {
+    width: 100%;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    transition: transform var(--duration-slow) var(--ease-out-expo);
+}
+
+.related-service-card:hover img {
+    transform: scale(1.04);
+}
+
+.related-service-card__body {
+    padding: var(--space-md);
+}
+
+.related-service-card__body h4 {
+    font-family: var(--font-display);
+    font-weight: var(--fw-semibold);
+    color: var(--text-primary);
+    font-size: var(--fs-body);
+}
+
+.related-service-card__body span {
+    font-size: var(--fs-small);
+    color: var(--accent-green);
+}
+
+@media (max-width: 767px) {
+    .related-services {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Sidebar layout */
+.service-detail-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--space-3xl);
+    align-items: start;
+}
+
+.service-sidebar {
+    position: sticky;
+    top: calc(var(--space-3xl) + 80px);
+}
+
+.service-sidebar__nav {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+}
+
+.service-sidebar__nav h4 {
+    font-family: var(--font-display);
+    font-weight: var(--fw-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+    font-size: var(--fs-body);
+}
+
+.service-sidebar__nav ul {
+    list-style: none;
+}
+
+.service-sidebar__nav li+li {
+    margin-top: 2px;
+}
+
+.service-sidebar__nav a {
+    display: block;
+    padding: 0.625rem var(--space-sm);
+    font-size: var(--fs-small);
+    color: var(--text-secondary);
+    border-radius: var(--radius-sm);
+    transition: color var(--duration-fast), background var(--duration-fast);
+}
+
+.service-sidebar__nav a:hover,
+.service-sidebar__nav a.active {
+    color: var(--accent-green);
+    background: rgba(57, 255, 20, 0.06);
+}
+
+.service-sidebar__downloads {
+    margin-top: var(--space-lg);
+}
+
+.service-sidebar__downloads .btn {
+    width: 100%;
+    text-align: center;
+    margin-bottom: var(--space-xs);
+}
+
+@media (max-width: 1023px) {
+    .service-detail-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .service-sidebar {
+        position: static;
+        order: -1;
+    }
+}

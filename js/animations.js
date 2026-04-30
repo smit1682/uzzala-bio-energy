@@ -508,6 +508,27 @@ function servicesGridChoreo() {
                 },
                 0.2
             );
+
+            // Per-card image reveal — the image wipes in bottom→top with a
+            // gentle counter-scale. Same stagger settings as the card slide
+            // so each image+card pair animates as one synchronized unit.
+            // Targeting .bento-card__media (wrapper, no CSS transition on
+            // it) avoids fighting the existing img hover transition.
+            const medias = group.querySelectorAll('.bento-card__media');
+            if (medias.length) {
+                tl.fromTo(
+                    medias,
+                    { clipPath: 'inset(0% 0% 100% 0%)', scale: 1.12 },
+                    {
+                        clipPath: 'inset(0% 0% 0% 0%)',
+                        scale: 1,
+                        duration: 1.1,
+                        stagger: { amount: 0.55, grid: 'auto', from: 'center' },
+                        ease: 'power4.out',
+                    },
+                    0.2
+                );
+            }
         }
     });
 

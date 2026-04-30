@@ -10,6 +10,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 /* --------------------------------------------------------------------------
+   0a. CROSS-DOCUMENT VIEW TRANSITIONS
+   Browser-native crossfade between page navigations. Old document fades out
+   in 250ms, new document fades in over 350ms (asymmetric — exit fast, enter
+   slightly slower per UI-animation guidance). Move curve.
+   Falls back gracefully in browsers without support (instant cut on dark
+   thanks to the inline critical CSS in each page's <head>).
+   -------------------------------------------------------------------------- */
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+::view-transition-old(root) {
+    animation-duration: 250ms;
+}
+
+::view-transition-new(root) {
+    animation-duration: 350ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation-duration: 0.01ms !important;
+    }
+}
+
+/* --------------------------------------------------------------------------
    1. DESIGN TOKENS (Custom Properties)
    -------------------------------------------------------------------------- */
 :root {

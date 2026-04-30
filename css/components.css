@@ -603,54 +603,6 @@
 }
 
 /* --------------------------------------------------------------------------
-   6. CUSTOM CURSOR
-   -------------------------------------------------------------------------- */
-.cursor-dot {
-    position: fixed;
-    width: 8px;
-    height: 8px;
-    background: var(--accent-green);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: var(--z-cursor);
-    mix-blend-mode: difference;
-    transform: translate(-50%, -50%);
-}
-
-.cursor-ring {
-    position: fixed;
-    width: 40px;
-    height: 40px;
-    border: 1px solid rgba(57, 255, 20, 0.4);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: var(--z-cursor);
-    transform: translate(-50%, -50%);
-    transition: width var(--duration-fast), height var(--duration-fast),
-        border-color var(--duration-fast);
-}
-
-.cursor-ring.hover {
-    width: 60px;
-    height: 60px;
-    border-color: var(--accent-green);
-    background: rgba(57, 255, 20, 0.05);
-}
-
-/* Hide on touch */
-@media (pointer: coarse) {
-
-    .cursor-dot,
-    .cursor-ring {
-        display: none !important;
-    }
-
-    body {
-        cursor: auto;
-    }
-}
-
-/* --------------------------------------------------------------------------
    7. PRELOADER
    -------------------------------------------------------------------------- */
 .preloader {
