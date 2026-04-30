@@ -22,3 +22,19 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Claude Code system files (skills, agents, settings — local only)
+.claude/
+.agents/
+skills.md
+skills-lock.json
+
+# Working notes / scratch / references — not part of the deployable site
+asset-prompts.md
+implementation_plan.md
+research/
+data/
+image.png
+
+# Legacy HTML from the Vite version, kept locally for reference during page migrations
+_legacy-html/
