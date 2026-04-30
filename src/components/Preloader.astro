@@ -1,0 +1,11 @@
+---
+// Brand intro overlay. Persisted across navigations so it doesn't re-mount —
+// initPreloader() in main.js skips it on subsequent visits via sessionStorage.
+---
+<div class="preloader" aria-hidden="true" transition:persist>
+    <div class="preloader__logo">Uzzala <span>Bio Energy</span></div>
+    <div class="preloader__counter">0%</div>
+    <div class="preloader__bar">
+        <div class="preloader__bar-fill"></div>
+    </div>
+</div>

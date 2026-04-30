@@ -1,0 +1,352 @@
+/* ==========================================================================
+   ABOUT.CSS — About page specific styles
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   SECTION INTRO PATTERNS — reusable on this page
+   -------------------------------------------------------------------------- */
+.about-section-intro {
+    margin-bottom: var(--space-2xl);
+}
+
+.about-section-intro--center {
+    text-align: center;
+    max-width: 720px;
+    margin-inline: auto;
+    margin-bottom: var(--space-2xl);
+}
+
+.about-section-intro--center h2 {
+    margin-bottom: var(--space-md);
+}
+
+.about-section-intro--center p {
+    color: var(--text-secondary);
+    margin-inline: auto;
+}
+
+.about-section-intro--split {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: end;
+}
+
+.about-section-intro--split p {
+    color: var(--text-secondary);
+}
+
+@media (max-width: 767px) {
+    .about-section-intro--split {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+        align-items: start;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   COMPANY STORY — Two-column split with editorial-portrait media + stats
+   -------------------------------------------------------------------------- */
+.about-story {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: var(--space-3xl);
+    align-items: center;
+}
+
+.about-story__media {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 4 / 5;        /* Editorial portrait — fills the column */
+    background: var(--bg-tertiary);
+}
+
+.about-story__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.about-story__content .section-label {
+    margin-bottom: var(--space-md);
+}
+
+.about-story__content h2 {
+    margin-bottom: var(--space-lg);
+    letter-spacing: -0.02em;
+}
+
+.about-story__content p {
+    color: var(--text-secondary);
+    line-height: var(--lh-relaxed);
+    margin-bottom: var(--space-md);
+}
+
+.about-story__content p:last-of-type {
+    margin-bottom: 0;
+}
+
+/* Stat row — pulls focus, balances the tall image */
+.about-story__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    margin: var(--space-xl) 0 var(--space-lg);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--glass-border);
+}
+
+.about-story__stat-num {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 4vw, 3rem);
+    font-weight: var(--fw-bold);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, var(--accent-green), var(--accent-teal));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+/* counterUp() rebuilds .counter as nested odometer cells; the parent's
+   gradient stops clipping (no direct text). Apply the gradient + clip per
+   cell so each glyph paints its own gradient. */
+.about-story__stat-num .counter.odometer .odometer__cell,
+.about-story__stat-num .counter.odometer .odometer__suffix {
+    background: linear-gradient(135deg, var(--accent-green), var(--accent-teal));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.about-story__stat-label {
+    font-size: var(--fs-small);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: var(--space-xs);
+    line-height: var(--lh-snug);
+}
+
+@media (max-width: 1023px) {
+    .about-story {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+
+    .about-story__media {
+        aspect-ratio: 16 / 10;
+        max-height: 480px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-story__stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   VISION & MISSION — Two cards side by side
+   -------------------------------------------------------------------------- */
+.about-pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    margin-top: var(--space-3xl);
+}
+
+.about-pillar-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    transition: border-color var(--duration-base) var(--ease-out-expo),
+        transform var(--duration-base) var(--ease-out-expo);
+}
+
+.about-pillar-card:hover {
+    border-color: rgba(57, 255, 20, 0.25);
+    transform: translateY(-4px);
+}
+
+.about-pillar-card__icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(57, 255, 20, 0.08);
+    border: 1px solid rgba(57, 255, 20, 0.18);
+    border-radius: var(--radius-md);
+    color: var(--accent-green);
+    margin-bottom: var(--space-md);
+}
+
+.about-pillar-card__icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.about-pillar-card h4 {
+    font-family: var(--font-display);
+    font-size: var(--fs-h4);
+    font-weight: var(--fw-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+}
+
+.about-pillar-card p {
+    color: var(--text-secondary);
+    font-size: var(--fs-body);
+    line-height: var(--lh-relaxed);
+}
+
+@media (max-width: 767px) {
+    .about-pillars {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   CORE VALUES — 3-column grid of cards
+   -------------------------------------------------------------------------- */
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+}
+
+.value-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    transition: border-color var(--duration-base) var(--ease-out-expo),
+        transform var(--duration-base) var(--ease-out-expo);
+}
+
+.value-card:hover {
+    border-color: rgba(57, 255, 20, 0.25);
+    transform: translateY(-4px);
+}
+
+.value-card__icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(57, 255, 20, 0.08);
+    border: 1px solid rgba(57, 255, 20, 0.18);
+    border-radius: var(--radius-md);
+    color: var(--accent-green);
+    margin-bottom: var(--space-md);
+}
+
+.value-card__icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.value-card h4 {
+    font-family: var(--font-display);
+    font-size: var(--fs-h4);
+    font-weight: var(--fw-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-xs);
+}
+
+.value-card p {
+    color: var(--text-secondary);
+    font-size: var(--fs-small);
+    line-height: var(--lh-relaxed);
+}
+
+@media (max-width: 1023px) {
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 639px) {
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   SPECIALIZATIONS — List with accent borders
+   -------------------------------------------------------------------------- */
+.specializations-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+}
+
+.specialization-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-left: 3px solid var(--accent-green);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: var(--fs-body);
+    line-height: var(--lh-normal);
+    transition: border-color var(--duration-base) var(--ease-out-expo),
+        transform var(--duration-base) var(--ease-out-expo);
+}
+
+.specialization-item:hover {
+    border-color: rgba(57, 255, 20, 0.35);
+    transform: translateX(4px);
+}
+
+.specialization-item svg {
+    width: 20px;
+    height: 20px;
+    color: var(--accent-green);
+    flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+    .specializations-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   PRESENCE — highlighted banner
+   -------------------------------------------------------------------------- */
+.presence-banner {
+    background: linear-gradient(135deg, rgba(57, 255, 20, 0.06), rgba(0, 240, 255, 0.04));
+    border: 1px solid rgba(57, 255, 20, 0.15);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl) var(--space-2xl);
+    text-align: center;
+}
+
+.presence-banner h3 {
+    font-family: var(--font-display);
+    font-size: var(--fs-h3);
+    font-weight: var(--fw-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+}
+
+.presence-banner p {
+    color: var(--text-secondary);
+    font-size: var(--fs-body);
+    line-height: var(--lh-relaxed);
+    max-width: 700px;
+    margin: 0 auto;
+}

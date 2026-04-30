@@ -1,0 +1,271 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import '../styles/pages/about.css';
+---
+
+<Layout
+    title="About Us — Uzzala Bio Energy Solutions"
+    description="Uzzala Bio Energy Solutions — leading renewable energy company specializing in Bio CBG plants, anaerobic digestion, and waste-to-energy solutions across India."
+    active="about"
+>
+    <PageHero
+        bgImage="/hero-about.webp"
+        breadcrumb="About Us"
+        title="About Uzzala<br />Bio Energy"
+    />
+
+    <!-- COMPANY STORY -->
+    <section class="section" id="story">
+        <div class="container">
+            <div class="about-story">
+                <div class="about-story__media reveal-clip">
+                    <img src="/about-company.webp" alt="Uzzala Bio Energy plant facility" width="800" height="1000" loading="lazy" decoding="async" />
+                </div>
+                <div class="about-story__content">
+                    <span class="section-label reveal-up">Our Story</span>
+                    <h2 class="reveal-text">Engineering biomethane<br />for India's clean energy future.</h2>
+                    <p class="reveal-up">Our objectives of the energy turnaround can only be achieved in an economically justifiable way if biomethane is used as an immediately available option to lower the carbon freight of the energy sector — in a future energy system that is increasingly fed by wind.</p>
+                    <p class="reveal-up">With successful projects in Maharashtra, Kerala, Gujarat, Uttar Pradesh, and Madhya Pradesh, Uzzala continues to expand its footprint across India.</p>
+
+                    <div class="about-story__stats">
+                        <div class="about-story__stat reveal-up">
+                            <div class="about-story__stat-num"><span class="counter" data-target="5">0</span></div>
+                            <div class="about-story__stat-label">States with active projects</div>
+                        </div>
+                        <div class="about-story__stat reveal-up">
+                            <div class="about-story__stat-num"><span class="counter" data-target="17" data-suffix="+">0</span></div>
+                            <div class="about-story__stat-label">Years of partnered expertise</div>
+                        </div>
+                    </div>
+
+                    <a href="/services" class="btn btn--ghost reveal-up">Explore our solutions</a>
+                </div>
+            </div>
+
+            <!-- Vision & Mission -->
+            <div class="about-pillars">
+                <div class="about-pillar-card reveal-up">
+                    <div class="about-pillar-card__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </div>
+                    <h4>Our Vision</h4>
+                    <p>We are committed to ensure that our comprehensive business solutions spearhead the renewable energy movement for a cleaner and greener environment globally, by aggressively capitalising the emerging Grid and Off Grid opportunities, biogas turnkey projects, biogas to biomethane (CNG) and biogas to electricity in appropriate collaboration with the world's leading renewable energy companies.</p>
+                </div>
+                <div class="about-pillar-card reveal-up">
+                    <div class="about-pillar-card__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <circle cx="12" cy="12" r="10"/>
+                            <circle cx="12" cy="12" r="6"/>
+                            <circle cx="12" cy="12" r="2"/>
+                        </svg>
+                    </div>
+                    <h4>Our Mission</h4>
+                    <p>Our mission to strive hard to achieve what has not been achieved hitherto and produce the world's best products & services in terms of quality, reliability and performance to serve the domain of biogas and solar energy, and translate our advanced technologies into value for our customers and stakeholders.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- CORE VALUES -->
+    <section class="section" id="values">
+        <div class="container">
+            <div class="about-section-intro about-section-intro--center">
+                <h2 class="reveal-text">Core Values</h2>
+                <p class="reveal-up">The principles that guide every project we engineer and every relationship we build.</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card reveal-up">
+                    <div class="value-card__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="m21 21-4.3-4.3"/>
+                        </svg>
+                    </div>
+                    <h4>Solution Focused</h4>
+                    <p>Identify and offer effective solutions & challenges in the industry and at our facility.</p>
+                </div>
+                <div class="value-card reveal-up">
+                    <div class="value-card__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                    </div>
+                    <h4>Get It Done</h4>
+                    <p>Be persistent, focused and explore every option to get it done.</p>
+                </div>
+                <div class="value-card reveal-up">
+                    <div class="value-card__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                    </div>
+                    <h4>Commitment to Excellence</h4>
+                    <p>We measure ourselves against the highest standards & quality.</p>
+                </div>
+                <div class="value-card reveal-up">
+                    <div class="value-card__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h4>Customer Centric</h4>
+                    <p>Customer satisfaction is our one true goal and our every action revolves around driving true value to the customer.</p>
+                </div>
+                <div class="value-card reveal-up">
+                    <div class="value-card__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <path d="M9 12l2 2 4-4"/>
+                            <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2.39 0 4.68.94 6.36 2.64"/>
+                        </svg>
+                    </div>
+                    <h4>Quality</h4>
+                    <p>We never compromise on quality. Our products are tested thoroughly at every stage and hence are of highest quality.</p>
+                </div>
+                <div class="value-card reveal-up">
+                    <div class="value-card__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h4>Honesty</h4>
+                    <p>"Honesty" to us means sincerity, truthfulness, fair & loyal with integrity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- SPECIALIZATIONS -->
+    <section class="section" id="specializations">
+        <div class="container">
+            <div class="about-section-intro about-section-intro--split">
+                <h2 class="reveal-text">Our<br />Specializations</h2>
+                <p class="reveal-up">Comprehensive capabilities across the entire Bio-CBG value chain — from feedstock handling to plant automation.</p>
+            </div>
+            <div class="specializations-list">
+                <div class="specialization-item reveal-up">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="20 6 9 17 4 12"/></svg>
+                    Bio CBG Plants (MSW, Pressmud, Poultry, Food & Agro Waste)
+                </div>
+                <div class="specialization-item reveal-up">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="20 6 9 17 4 12"/></svg>
+                    Dry & Wet Anaerobic Digestion Technologies
+                </div>
+                <div class="specialization-item reveal-up">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="20 6 9 17 4 12"/></svg>
+                    CSTR Digesters, Dry Fermenters & Double Membrane Gas Holders
+                </div>
+                <div class="specialization-item reveal-up">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="20 6 9 17 4 12"/></svg>
+                    Solid-Liquid Organic Fertilizer Production Units
+                </div>
+                <div class="specialization-item reveal-up">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="20 6 9 17 4 12"/></svg>
+                    Turnkey Project Execution & Plant Automation
+                </div>
+                <div class="specialization-item reveal-up">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="20 6 9 17 4 12"/></svg>
+                    Operation & Maintenance Services
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- PRESENCE -->
+    <section class="section">
+        <div class="container">
+            <div class="presence-banner reveal-scale">
+                <h3>Our Presence Across India</h3>
+                <p>With successful projects in Maharashtra, Kerala, Gujarat, Uttar Pradesh, and Madhya Pradesh, Uzzala continues to expand its footprint — delivering Bio CBG plants engineered for Indian feedstock conditions in strategic partnership with ARCIPLUG, Finland.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- TEAM -->
+    <section class="section team-section" id="team">
+        <div class="container">
+            <div class="team-section__header">
+                <h2 class="reveal-text">The Industry Leaders</h2>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-card__image-wrap">
+                        <img src="/team-ceo.webp" alt="Dr. Alok Agrawal — CEO" width="400" height="500" loading="lazy" decoding="async" />
+                        <div class="team-card__overlay">
+                            <a href="https://wa.me/9756962526" class="team-card__whatsapp" target="_blank" rel="noopener" aria-label="Chat with CEO on WhatsApp">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="team-card__info">
+                        <h4>Dr. Alok Agrawal</h4>
+                        <span>CEO</span>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-card__image-wrap">
+                        <img src="/team-coo.webp" alt="Niraj Kumar Singh — COO" width="400" height="500" loading="lazy" decoding="async" />
+                        <div class="team-card__overlay">
+                            <a href="https://wa.me/8200618329" class="team-card__whatsapp" target="_blank" rel="noopener" aria-label="Chat with COO on WhatsApp">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="team-card__info">
+                        <h4>Niraj Kumar Singh</h4>
+                        <span>COO</span>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-card__image-wrap">
+                        <img src="/team-cto.webp" alt="Kirit Prajapati — CTO" width="400" height="500" loading="lazy" decoding="async" />
+                        <div class="team-card__overlay">
+                            <a href="https://wa.me/9825017181" class="team-card__whatsapp" target="_blank" rel="noopener" aria-label="Chat with CTO on WhatsApp">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="team-card__info">
+                        <h4>Kirit Prajapati</h4>
+                        <span>CTO</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- CTA -->
+    <section class="section cta-section">
+        <div class="container">
+            <div class="cta-card reveal-scale">
+                <h2>Download Profile & Brochure</h2>
+                <p>Get our company profile and detailed brochure to learn more about our solutions and capabilities.</p>
+                <div class="cta-card__actions">
+                    <a href="https://www.uzzalabioenergy.com/Uzzala-Bio-Energy-Solutions-Company-Profile.pdf" class="btn btn--primary magnetic" target="_blank" rel="noopener">Download Profile</a>
+                    <a href="https://www.uzzalabioenergy.com/Uzzala-Bio-Energy-Solutions-Brochure.pdf" class="btn btn--secondary magnetic" target="_blank" rel="noopener">Download Brochure</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<script>
+    import '../scripts/pages/about.js';
+</script>

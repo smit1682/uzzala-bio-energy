@@ -1,0 +1,25 @@
+---
+// Reusable inner-page hero (50vh, dimmed bg image, breadcrumb + h1).
+// NOT used by the homepage — that has its own full-bleed video hero.
+interface Props {
+    bgImage: string;       // e.g. "/hero-about.webp"
+    breadcrumb: string;    // e.g. "About Us"
+    title: string;         // raw HTML allowed for line breaks
+}
+const { bgImage, breadcrumb, title } = Astro.props;
+---
+
+<section class="page-hero">
+    <div class="page-hero__bg">
+        <img src={bgImage} alt="" />
+    </div>
+    <div class="page-hero__overlay"></div>
+    <div class="container page-hero__content">
+        <nav class="page-hero__breadcrumb reveal-up" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span>/</span>
+            <span>{breadcrumb}</span>
+        </nav>
+        <h1 class="reveal-text" set:html={title} />
+    </div>
+</section>

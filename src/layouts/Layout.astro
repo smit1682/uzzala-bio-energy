@@ -1,0 +1,70 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Preloader from '../components/Preloader.astro';
+import WhatsApp from '../components/WhatsApp.astro';
+
+import '../styles/style.css';
+import '../styles/components.css';
+
+type ActiveNav = 'home' | 'about' | 'services' | 'gallery' | 'career' | 'contact';
+interface Props {
+    title: string;
+    description?: string;
+    active?: ActiveNav;
+}
+
+const {
+    title,
+    description = 'Uzzala Bio Energy Solutions specializes in Bio CBG plant engineering, anaerobic digestion, and compressed biogas technology.',
+    active = 'home',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="lenis">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" as="style" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <!-- Critical CSS — kills white flash before main bundle parses -->
+    <style is:inline>
+        html { background: #0a0a0f; color-scheme: dark; }
+        body { background: #0a0a0f; color: #fff; margin: 0; }
+    </style>
+
+    <!-- Astro's View Transitions — handles cross-page crossfade automatically -->
+    <ViewTransitions />
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="scroll-progress" aria-hidden="true" transition:persist></div>
+    <div class="noise-overlay" aria-hidden="true" transition:persist></div>
+
+    <Preloader />
+    <Navbar active={active} />
+
+    <main id="main-content">
+        <slot />
+    </main>
+
+    <Footer />
+    <WhatsApp />
+
+    <!-- Global scripts. Astro processes these — bundled, hashed, served as
+         an external module so they parse synchronously per page-load. -->
+    <script>
+        import '../scripts/main.js';
+    </script>
+</body>
+</html>

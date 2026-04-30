@@ -1,0 +1,59 @@
+---
+type ActiveNav = 'home' | 'about' | 'services' | 'gallery' | 'career' | 'contact';
+interface Props {
+    active?: ActiveNav;
+}
+const { active = 'home' } = Astro.props;
+---
+
+<nav class="navbar" role="navigation" aria-label="Main navigation" transition:persist>
+    <div class="navbar__inner">
+        <a href="/" class="navbar__logo" aria-label="Uzzala Bio Energy - Home">
+            <span>Uzzala</span>
+            <span class="navbar__logo-accent">Bio Energy</span>
+        </a>
+
+        <ul class="navbar__menu">
+            <li><a href="/" class:list={['navbar__link', { active: active === 'home' }]}>Home</a></li>
+            <li><a href="/about" class:list={['navbar__link', { active: active === 'about' }]}>About Us</a></li>
+            <li class="navbar__dropdown">
+                <a href="/services" class:list={['navbar__link', 'navbar__dropdown-toggle', { active: active === 'services' }]}>
+                    Services
+                    <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+                </a>
+                <ul class="navbar__dropdown-menu">
+                    <li><a href="/services/plug-flow-digester">Plug Flow Digester</a></li>
+                    <li><a href="/services/cstr-digester">CSTR Digester</a></li>
+                    <li><a href="/services/h2s-removal-system">H2S Removal System</a></li>
+                    <li><a href="/services/water-scrubber">Water Scrubber</a></li>
+                    <li><a href="/services/psa-purification-plant">PSA Purification Plant</a></li>
+                    <li><a href="/services/membrane-biogas-separation">Membrane Biogas Separation</a></li>
+                    <li><a href="/services/sewage-treatment-plant">Sewage Treatment Plant</a></li>
+                    <li><a href="/services/organic-fertilizer">Organic Fertilizer</a></li>
+                    <li><a href="/services/compressed-biogas">Compressed Biogas (CBG)</a></li>
+                    <li><a href="/services/cbg-fuel">CBG Fuel</a></li>
+                    <li><a href="/services/biogas-from-waste">Biogas From Waste</a></li>
+                </ul>
+            </li>
+            <li><a href="/gallery" class:list={['navbar__link', { active: active === 'gallery' }]}>Gallery</a></li>
+            <li><a href="/career" class:list={['navbar__link', { active: active === 'career' }]}>Career</a></li>
+            <li><a href="/contact" class:list={['navbar__link', { active: active === 'contact' }]}>Contact</a></li>
+        </ul>
+
+        <a href="/contact" class="btn btn--primary navbar__cta-desktop magnetic">Get a Quote</a>
+
+        <button class="navbar__hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<div class="navbar__mobile-menu" aria-hidden="true" transition:persist>
+    <a href="/">Home</a>
+    <a href="/about">About Us</a>
+    <a href="/services">Services</a>
+    <a href="/gallery">Gallery</a>
+    <a href="/career">Career</a>
+    <a href="/contact">Contact</a>
+    <a href="/contact" class="btn btn--primary navbar__mobile-cta">Get a Quote</a>
+</div>
